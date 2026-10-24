@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Avatar, Button, Layout, Menu, Space, Tag, Tooltip, Typography, theme } from 'antd'
+import { Alert, Avatar, Button, Layout, Menu, Space, Tag, Tooltip, Typography, theme } from 'antd'
 import {
   BarChartOutlined,
   ExperimentOutlined,
@@ -16,6 +16,7 @@ import { checkHealth } from '../api/health'
 import { getAiStatus } from '../api/ai'
 import AiConfigModal from '../components/AiConfigModal'
 import { DEFAULT_PROVIDER, getAiConfig, getProviderPreset } from '../utils/aiConfig.js'
+import { DEMO_MODE } from '../demo/demoMode.js'
 
 const { Header, Sider, Content } = Layout
 
@@ -150,6 +151,7 @@ export default function MainLayout() {
           </Typography.Title>
         </div>
         <Space size={12}>
+          {DEMO_MODE && <Tag color="warning">演示数据，非真实投放记录</Tag>}
           {backendStatus === 'checking' && <Tag>后端检测中...</Tag>}
           {backendStatus === 'ok' && <Tag color="success">后端已连接</Tag>}
           {backendStatus === 'down' && <Tag color="error">后端未连接</Tag>}
@@ -195,8 +197,18 @@ export default function MainLayout() {
         </Space>
       </Header>
 
+      {DEMO_MODE && (
+        <Alert
+          type="warning"
+          showIcon
+          message="演示模式：本站展示全部为虚构的演示数据，非真实投放记录；AI 识别与文件导入功能在此模式不可用"
+          banner
+          style={{ marginTop: HEADER_HEIGHT }}
+        />
+      )}
+
       {/* Persistent Sidebar：固定左侧导航，主内容通过 offset 让位（不覆盖、不水平跳动） */}
-      <Layout style={{ marginTop: HEADER_HEIGHT }}>
+      <Layout style={{ marginTop: HEADER_HEIGHT + (DEMO_MODE ? 38 : 0) }}>
         <Sider
           theme="dark"
           collapsible

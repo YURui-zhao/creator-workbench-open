@@ -2,8 +2,10 @@
 
 一个本地运行的单机全栈应用：管理达人投放记录、沉淀达人近期内容表现与商务判断过程，并基于真实成交数据回答「这个达人该不该复投、该出多少钱」。
 
-- GitHub：https://github.com/YURui-zhao/creator-workbench
-- 分支：`v3-alpha3`
+- GitHub（本公开仓库）：https://github.com/YURui-zhao/creator-workbench-open
+- 当前版本：`v1.0.0`（tag `v1.0.0`）
+
+> 说明：本仓库为公开发布版，不包含任何真实投放数据。开发在作者的私有仓库中进行，与本仓库互不同步。
 
 ## 一、项目介绍
 
@@ -342,4 +344,13 @@ kill <PID>      # 确认后再结束；不要对未确认的进程使用 kill -9
 
 - 真实数据库 / WAL / `.env` / 日志均被 `.gitignore` 排除，禁止提交
 - 提交前运行相关测试 + `cd frontend && npm run build` + `git diff --check`
-- 提交信息用小写祈使句（如 `fix: ...` / `feat: ...` / `docs: ...`）；推送使用 `git push origin v3-alpha3`，禁止 force push
+- 提交信息用小写祈使句（如 `fix: ...` / `feat: ...` / `docs: ...`）；推送使用 `git push origin main`，禁止 force push
+
+## 十六、在线演示模式（DEMO_MODE）
+
+仓库提供纯静态的在线演示模式：不连接任何后端 / 数据库，页面数据全部为**虚构的演示数据**（样板达人01–08 系列），用于作品集展示与快速了解产品。
+
+- 启用方式：构建时设置环境变量 `VITE_DEMO_MODE=1`（如 `VITE_DEMO_MODE=1 npm run build`；Vercel 项目环境变量中配置同名变量）
+- 实现：`frontend/src/demo/demoAdapter.js` 作为 axios 适配层在浏览器内存中模拟接口；数据由 `frontend/src/demo/demoData.js` 提供，编辑等操作仅作用于内存，刷新后恢复
+- 已知限制：AI 截图识别、真实文件导入、决策创建 / 作废、批次撤销等写后端的功能在演示模式明确禁用（提示「演示模式」），不模拟真实服务
+- 正常业务模式不受影响：不设置 `VITE_DEMO_MODE` 时，构建产物与 v1.0.0 行为完全一致（连接自建 Express + SQLite 后端）

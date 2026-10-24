@@ -1,11 +1,17 @@
 import axios from 'axios'
 import { message } from 'antd'
+import { demoRequest } from '../demo/demoAdapter.js'
+import { DEMO_MODE } from '../demo/demoMode.js'
 
 // 统一的 axios 实例：baseURL /api，由 Vite 代理转发到后端 3001
 const request = axios.create({
   baseURL: '/api',
   timeout: 15000
 })
+
+if (DEMO_MODE) {
+  request.defaults.adapter = demoRequest
+}
 
 // 响应拦截器：直接返回后端统一格式 { code, data, msg }
 request.interceptors.response.use(
