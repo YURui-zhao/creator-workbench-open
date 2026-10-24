@@ -1,0 +1,21 @@
+{
+  "name": "workbench-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "全栈达人工作台 - 后端（Node.js + Express + better-sqlite3）",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "better-sqlite3": "^11.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
