@@ -2,8 +2,16 @@
 
 一个本地运行的单机全栈应用：管理达人投放记录、沉淀达人近期内容表现与商务判断过程，并基于真实成交数据回答「这个达人该不该复投、该出多少钱」。
 
-- GitHub：https://github.com/YURui-zhao/creator-workbench
-- 分支：`v3-alpha3`
+## 在线体验
+
+**👉 [点击打开在线演示：creator-workbench-demo](https://creator-workbench-demo.cf-pages-upload.workers.dev)**
+
+- Demo 使用**完全虚构的演示数据**（「样板达人」系列），可体验数据看板、投放管理、复投雷达、达人拓展、达人库、导入历史六个主要业务页面
+- 编辑等操作仅作用于浏览器内存，刷新后恢复初始演示数据；AI 截图识别与文件导入在演示模式下不可用
+- 部分中国大陆网络可能需要代理才能访问该演示地址
+
+- GitHub（本公开仓库）：https://github.com/YURui-zhao/creator-workbench-open
+- 当前版本：`v1.0.0`（tag `v1.0.0`）
 
 ## 一、项目介绍
 
